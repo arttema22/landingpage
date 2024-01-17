@@ -1,0 +1,17 @@
+composer create-project laravel/laravel landingpage
+
+setup database
+
+php artisan migrate
+
+composer require moonshine/moonshine
+
+php artisan moonshine:install
+
+php artisan serve
+
+tailwindcss
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
