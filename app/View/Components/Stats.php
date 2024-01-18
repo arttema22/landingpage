@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Statistic;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,10 @@ class Stats extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.stats');
+        $data = Statistic::where('is_publish', 1)
+            ->orderBy('sorting')
+            ->get();
+
+        return view('components.stats', ['data' => $data]);
     }
 }

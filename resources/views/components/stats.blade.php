@@ -4,29 +4,13 @@
         <!-- wrapper -->
         <div class="flex flex-col xl:flex-row gap-y-6 justify-between">
             <!-- item -->
-            <div class="stats__item flex-1 xl:border-r flex flex-col items-center">
+            @foreach ( $data as $item)
+            <div class="stats__item flex-1 xl:border-r last:xl:border-none flex flex-col items-center">
                 <div class="text-4xl xl:text-[64px] font-semibold text-accent-tertiary
-                   xl:mb-2">+5120</div>
-                <div>Happy Patients</div>
+                               xl:mb-2">{{ $item->data }}</div>
+                <div>{{ $item->text }}</div>
             </div>
-            <!-- item -->
-            <div class="stats__item flex-1 xl:border-r flex flex-col items-center">
-                <div class="text-4xl xl:text-[64px] font-semibold text-accent-tertiary
-                                           xl:mb-2">26</div>
-                <div>Total Branches</div>
-            </div>
-            <!-- item -->
-            <div class="stats__item flex-1 xl:border-r flex flex-col items-center">
-                <div class="text-4xl xl:text-[64px] font-semibold text-accent-tertiary
-                                                       xl:mb-2">+53</div>
-                <div>Senior Doctors</div>
-            </div>
-            <!-- item -->
-            <div class="stats__item flex-1 flex flex-col items-center">
-                <div class="text-4xl xl:text-[64px] font-semibold text-accent-tertiary
-                                                                   xl:mb-2">+10</div>
-                <div>Years Experience</div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

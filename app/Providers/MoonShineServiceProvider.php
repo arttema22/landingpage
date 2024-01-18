@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\MoonShine\Pages\Contact;
 use App\MoonShine\Pages\Hero;
 use App\MoonShine\Pages\TestPage;
+use App\MoonShine\Resources\StatisticResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -29,8 +30,15 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     protected function menu(): array
     {
         return [
-            MenuItem::make('contact', Contact::make('contact_section', 'contact')),
-            MenuItem::make('hero', Hero::make('hero_section', 'hero')),
+            MenuItem::make('contact', Contact::make('contact_section', 'contact'))
+                ->icon('heroicons.outline.bars-3')
+                ->translatable('site'),
+            MenuItem::make('hero', Hero::make('hero_section', 'hero'))
+                ->icon('heroicons.outline.bars-3')
+                ->translatable('site'),
+            MenuItem::make('statistic', new StatisticResource)
+                ->icon('heroicons.outline.bars-3')
+                ->translatable('site'),
 
             MenuGroup::make(static fn () => __('moonshine::ui.resource.system'), [
                 MenuItem::make(
@@ -42,9 +50,6 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     new MoonShineUserRoleResource()
                 ),
             ]),
-
-            MenuItem::make('Documentation', 'https://moonshine-laravel.com')
-                ->badge(fn () => 'Check'),
         ];
     }
 
