@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\MoonShine\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Route::get('/', function () {
+//     return view('landing');
+// });
+
+Route::post('/contact-settings', [SettingsController::class, 'contact_update'])->name('contact_update');
+Route::post('/hero-settings', [SettingsController::class, 'hero_update'])->name('hero_update');

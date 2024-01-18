@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\MoonShine\Pages\Contact;
 use App\MoonShine\Pages\Hero;
+use App\MoonShine\Pages\TestPage;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;

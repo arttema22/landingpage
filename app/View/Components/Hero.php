@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Spatie\Valuestore\Valuestore;
+use Illuminate\Contracts\View\View;
 
 class Hero extends Component
 {
@@ -21,6 +22,8 @@ class Hero extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.hero');
+        $settings = Valuestore::make(storage_path('data/hero_settings.json'));
+
+        return view('components.hero', ['settings' => $settings]);
     }
 }

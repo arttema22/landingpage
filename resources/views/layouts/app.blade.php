@@ -34,15 +34,19 @@
 
             <div class="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:gap-y-0">
                 <!-- location -->
+                @if($settings->has('address'))
                 <div class="flex justify-center items-center gap-x-2 lg:justify-normal">
                     <i class="ri-map-pin-2-fill text-2xl text-accent"></i>
-                    <div class="text-secondary">198266 SPb Stoykosty</div>
+                    <div class="text-secondary">{{ $settings->get('address') }}</div>
                 </div>
+                @endif
                 <!-- phone -->
+                @if($settings->has('phone'))
                 <div class="flex justify-center items-center gap-x-2 lg:justify-normal">
                     <i class="ri-phone-fill text-2xl text-accent"></i>
-                    <div class="text-secondary">(+7) 911 926-81-88</div>
+                    <div class="text-secondary">{{ $settings->get('phone') }}</div>
                 </div>
+                @endif
                 <!-- btn-->
                 <button class="btn btn-sm btn-outline
             w-[240px] lg:w-auto mx-auto lg:mx-0">
@@ -153,18 +157,24 @@
                     </p>
                     <!-- location, email & phone -->
                     <div class="flex flex-col gap-y-3 mb-10">
+                        @if($settings->has('address'))
                         <div class="flex items-center gap-x-[6px]">
                             <i class="ri-map-pin-fill text-[24px] text-accent"></i>
-                            <div>198266 SPb. Stoykosty</div>
+                            <div>{{ $settings->get('address') }}</div>
                         </div>
+                        @endif
+                        @if($settings->has('email'))
                         <div class="flex items-center gap-x-[6px]">
                             <i class="ri-mail-fill text-[24px] text-accent"></i>
-                            <div>arttema@mail.ru</div>
+                            <div>{{ $settings->get('email') }}</div>
                         </div>
+                        @endif
+                        @if($settings->has('phone'))
                         <div class="flex items-center gap-x-[6px]">
                             <i class="ri-phone-fill text-[24px] text-accent"></i>
-                            <div>+7 911 926-8188</div>
+                            <div>{{ $settings->get('phone') }}</div>
                         </div>
+                        @endif
                     </div>
                     <!-- socials -->
                     <div class="flex gap-[14px] text-[30px]">

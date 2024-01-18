@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Spatie\Valuestore\Valuestore;
 
 class AppServiceProvider extends ServiceProvider
 {

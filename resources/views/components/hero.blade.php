@@ -6,22 +6,33 @@
             <!-- text -->
             <div class="hero__text xl:w-[48%] text-center xl:text-left">
                 <!-- bage -->
+                @if($settings->has('bage_title'))
                 <div class="flex items-center bg-white py-[10px] px-[20px]
                    w-max gap-x-2 mb-[26px] rounded-full mx-auto xl:mx-0">
                     <!-- bage icon -->
-                    <i class="ri-heart-pulse-line text-2xl text-accent"></i>
+                    @if($settings->has('bage_icon'))
+                    <i class="{{ $settings->get('bage_icon') }} text-2xl text-accent"></i>
+                    @endif
                     <div class="uppercase text-base font-medium
-                      text-[#9ab4b7] tracking-[2.24px]">Live your life</div>
+                      text-[#9ab4b7] tracking-[2.24px]">{{ $settings->get('bage_title') }}</div>
                 </div>
+                @endif
                 <!-- title -->
-                <h1 class="h1 mb-6">We care about your health</h1>
+                @if($settings->has('hero_title'))
+                <h1 class="h1 mb-6">{{ $settings->get('hero_title') }}</h1>
+                @endif
                 <!-- desc -->
-                <p class="mb-[42px] md:max-w-xl">Lorem ipsum consectetur adipisicing elit. Quaerat dolorum
-                    impedit tenetur, minus alias eum molestias molestiae est
-                    consequatur. Soluta, pariatur mollitia.
+                @if($settings->has('hero_text'))
+                <p class="mb-[42px] md:max-w-xl">
+                    {{ $settings->get('hero_text') }}
                 </p>
+                @endif
                 <!-- btn-->
-                <button class="btn btn-lg btn-accent mx-auto xl:mx-0">Contact us</button>
+                @if($settings->has('hero_btn_title'))
+                <a class="btn btn-lg btn-accent mx-auto xl:mx-0" href="{{ $settings->get('hero_btn_url') }}">
+                    {{ $settings->get('hero_btn_title') }}
+                </a>
+                @endif
             </div>
             <!-- image -->
             <div class="hero__img hidden xl:flex max-w-[814px] self-end">
