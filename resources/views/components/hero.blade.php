@@ -1,5 +1,4 @@
-<!-- hero -->
-<section class="hero bg-grey py-12 xl:pt-12 xl:pb-0 overflow-hidden">
+<section id="hero" class="hero bg-grey py-12 xl:pt-12 xl:pb-0 overflow-hidden">
     <div class="container mx-auto h-full">
         <!-- text & img -->
         <div class="flex flex-col xl:flex-row items-center justify-between h-full">
@@ -41,4 +40,3 @@
         </div>
     </div>
 </section>
-<!-- end hero -->

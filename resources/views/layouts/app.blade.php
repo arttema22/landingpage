@@ -22,7 +22,7 @@
 
 <body>
     <!-- header -->
-    <header class="py-8 lg:pt-6 lg:pb-14">
+    <header id="home" class="py-8 lg:pt-6 lg:pb-14">
         <div class="container mx-auto lg:relative flex flex-col
       lg:flex-row lg:justify-between gap-y-4 lg:gap-y-0">
             <!-- logo -->
@@ -71,23 +71,15 @@
                         </a>
                         <!-- list -->
                         <ul>
-                            <li><a href="#" class="text-secondary hover:text-accent
-                        transition-all duration-300">Home</a></li>
-                            <li><a href="#" class="text-secondary hover:text-accent
-                                                   transition-all duration-300">
-                                    Doctors</a></li>
-                            <li><a href="#" class="text-secondary hover:text-accent
-                                                      transition-all duration-300">
-                                    Department</a></li>
-                            <li><a href="#" class="text-secondary hover:text-accent
-                                                      transition-all duration-300">
-                                    Services</a></li>
-                            <li><a href="#" class="text-secondary hover:text-accent
-                                                      transition-all duration-300">
-                                    Blog</a></li>
-                            <li><a href="#" class="text-secondary hover:text-accent
-                                                                                 transition-all duration-300">
-                                    Contact</a></li>
+                            <li><a href="#home" class="text-secondary hover:text-accent transition-all duration-300">
+                                    Home
+                                </a></li>
+                            <li><a href="#hero" class="text-secondary hover:text-accent transition-all duration-300">
+                                    Hero
+                                </a></li>
+                            <li><a href="#stats" class="text-secondary hover:text-accent transition-all duration-300">
+                                    Statistic
+                                </a></li>
                         </ul>
                         <!-- form -->
                         <form class="relative flex gap-x-[10px]">
@@ -105,24 +97,21 @@
             lg:items-center lg:justify-between lg:px-[50px]">
                     <!-- list -->
                     <ul class="flex gap-x-4">
-                        <li><a href="#" class="border-r pr-4 text-secondary hover:text-accent
-                                                         transition-all duration-300">Home</a></li>
-                        <li><a href="#" class="border-r pr-4 text-secondary hover:text-accent
-                                                                                    transition-all duration-300">
-                                Doctors</a></li>
-                        <li><a href="#" class="border-r pr-4 text-secondary hover:text-accent
-                                                                                       transition-all duration-300">
-                                Department</a></li>
-                        <li><a href="#" class="border-r pr-4 text-secondary hover:text-accent
-                                                                                       transition-all duration-300">
-                                Services</a></li>
-                        <li><a href="#" class="border-r pr-4 text-secondary hover:text-accent
-                                                                                       transition-all duration-300">
-                                Blog</a></li>
-                        <li><a href="#"
-                                class="text-secondary hover:text-accent
-                                                                                                                  transition-all duration-300">
-                                Contact</a></li>
+                        <li class="border-r last:border-none">
+                            <a href="#home" class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                Home
+                            </a>
+                        </li>
+                        <li class="border-r last:border-none">
+                            <a href="#hero" class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                Hero
+                            </a>
+                        </li>
+                        <li class="border-r last:border-none">
+                            <a href="#stats" class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                Statistic
+                            </a>
+                        </li>
                     </ul>
                     <!-- form -->
                     <form class="relative flex gap-x-[10px]">

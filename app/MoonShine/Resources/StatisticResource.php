@@ -7,12 +7,17 @@ namespace App\MoonShine\Resources;
 use MoonShine\Fields\ID;
 use App\Models\Statistic;
 
-use MoonShine\Fields\Text;
-use MoonShine\Resources\ModelResource;
-use Illuminate\Database\Eloquent\Model;
 use MoonShine\Fields\Date;
+use MoonShine\Fields\Text;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Switcher;
+use MoonShine\Fields\StackFields;
+use MoonShine\Resources\ModelResource;
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Decorations\Block;
+use MoonShine\Decorations\Column;
+use MoonShine\Decorations\Flex;
+use MoonShine\Decorations\Grid;
 
 class StatisticResource extends ModelResource
 {
@@ -23,32 +28,45 @@ class StatisticResource extends ModelResource
     public function indexFields(): array
     {
         return [
-            Text::make('sorting')->sortable(),
-            // ID::make()->sortable(),
-            // Text::make('moonshine_user_id'),
-            Text::make('name'),
-            Text::make('data'),
-            Text::make('text'),
-            Text::make('is_publish'),
-            // Text::make('created_at'),
-            // Text::make('updated_at'),
-            // Text::make('deleted_at'),
+            Text::make('sorting')->sortable()->translatable('site'),
+            StackFields::make('title')->fields([
+                Text::make('name'),
+                Text::make(
+                    'data',
+                    'data',
+                    fn ($item) => $item->data . ' ' . $item->text
+                ),
+            ])->translatable('site'),
+            Switcher::make('is_publish')
+                ->updateOnPreview()
+                ->translatable('site'),
         ];
     }
 
     public function formFields(): array
     {
         return [
-            ID::make()->sortable(),
-            Text::make('moonshine_user_id'),
-            Text::make('name')->required(),
-            Text::make('data'),
-            Text::make('text'),
-            Switcher::make('is_publish'),
-            Number::make('sorting'),
-            Date::make('created_at'),
-            Date::make('updated_at'),
-            Date::make('deleted_at'),
+            //Text::make('moonshine_user_id'),
+            Grid::make([
+                Column::make([
+                    Block::make([
+                        Text::make('name')->required(),
+                        Flex::make([
+                            Text::make('data'),
+                            Text::make('text'),
+                        ]),
+                    ]),
+                    Flex::make([
+                        Number::make('sorting')->buttons()->customWrapperAttributes(['class' => 'basis-1/2']),
+                        Switcher::make('is_publish')->customWrapperAttributes(['class' => 'basis-1/2']),
+                    ]),
+                ])->columnSpan(8),
+                Column::make([
+                    Date::make('created_at')->disabled(),
+                    Date::make('updated_at')->disabled(),
+                    Date::make('deleted_at')->disabled(),
+                ])->columnSpan(4),
+            ]),
         ];
     }
 

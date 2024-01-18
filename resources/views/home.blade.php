@@ -1,38 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-
-<!-- hero -->
 <x-hero />
-
-<!-- stats -->
 <x-stats />
 
 <!-- services -->
-<x-services />
+{{--
+<x-services /> --}}
 
 <!-- appointment -->
-<x-appointment />
+{{--
+<x-appointment /> --}}
 
 <!-- testimonials -->
-<x-testimonials />
+{{--
+<x-testimonials /> --}}
 
 <!-- team -->
-<x-team />
+{{--
+<x-team /> --}}
 
 <!-- faq -->
-<x-faq />
+{{--
+<x-faq /> --}}
 
 <!-- departments -->
-<x-departments />
+{{--
+<x-departments /> --}}
 
 <!-- blog -->
-<x-blog />
+{{--
+<x-blog /> --}}
 
 <!-- brands -->
-<x-brands />
+{{--
+<x-brands /> --}}
 
 <!-- newsletter -->
-<x-newsletter />
+{{--
+<x-newsletter /> --}}
 
 @endsection

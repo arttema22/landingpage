@@ -1,5 +1,5 @@
-<!-- stats -->
-<section class="stats section">
+@if (count($data) > 0)
+<section id="stats" class="stats section">
     <div class="container mx-auto">
         <!-- wrapper -->
         <div class="flex flex-col xl:flex-row gap-y-6 justify-between">
@@ -14,4 +14,4 @@
         </div>
     </div>
 </section>
-<!-- end stats -->
+@endif
