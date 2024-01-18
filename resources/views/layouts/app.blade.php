@@ -80,6 +80,9 @@
                             <li><a href="#stats" class="text-secondary hover:text-accent transition-all duration-300">
                                     Statistic
                                 </a></li>
+                            <li><a href="#service" class="text-secondary hover:text-accent transition-all duration-300">
+                                    Services
+                                </a></li>
                         </ul>
                         <!-- form -->
                         <form class="relative flex gap-x-[10px]">
@@ -110,6 +113,12 @@
                         <li class="border-r last:border-none">
                             <a href="#stats" class="pr-4 text-secondary hover:text-accent transition-all duration-300">
                                 Statistic
+                            </a>
+                        </li>
+                        <li class="border-r last:border-none">
+                            <a href="#service"
+                                class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                Services
                             </a>
                         </li>
                     </ul>
@@ -191,11 +200,10 @@
                     <div class="flex gap-x-5">
                         <!-- list 1 -->
                         <ul class="flex-1 flex flex-col gap-y-5">
-                            <li><a href="#" class="hover:text-accent transition-all">Home</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Doctors</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Department</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Services</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Blog</a></li>
+                            <li><a href="#home" class="hover:text-accent transition-all">Home</a></li>
+                            <li><a href="#hero" class="hover:text-accent transition-all">Hero</a></li>
+                            <li><a href="#stats" class="hover:text-accent transition-all">Statistic</a></li>
+                            <li><a href="#service" class="hover:text-accent transition-all">Services</a></li>
                         </ul>
                         <!-- list 2 -->
                         <ul class="flex-1 flex flex-col gap-y-5">

@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\MoonShine\Pages\Contact;
 use App\MoonShine\Pages\Hero;
 use App\MoonShine\Pages\TestPage;
+use App\MoonShine\Resources\ServiceResource;
 use App\MoonShine\Resources\StatisticResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
@@ -37,6 +38,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 ->icon('heroicons.outline.bars-3')
                 ->translatable('site'),
             MenuItem::make('statistic', new StatisticResource)
+                ->icon('heroicons.outline.bars-3')
+                ->translatable('site'),
+            MenuItem::make('services', new ServiceResource)
                 ->icon('heroicons.outline.bars-3')
                 ->translatable('site'),
 

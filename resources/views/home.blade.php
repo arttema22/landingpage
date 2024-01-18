@@ -3,10 +3,7 @@
 @section('content')
 <x-hero />
 <x-stats />
-
-<!-- services -->
-{{--
-<x-services /> --}}
+<x-service />
 
 <!-- appointment -->
 {{--
