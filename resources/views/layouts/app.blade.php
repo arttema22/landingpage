@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap"
         rel="stylesheet">
     <!-- swiper css -->
     <link rel="stylesheet" href="css/swiper-bundle.min.css">
@@ -83,6 +83,19 @@
                             <li><a href="#service" class="text-secondary hover:text-accent transition-all duration-300">
                                     Services
                                 </a></li>
+                            <li><a href="#testimonial"
+                                    class="text-secondary hover:text-accent transition-all duration-300">
+                                    Testimonials
+                                </a></li>
+                            <li><a href="#team" class="text-secondary hover:text-accent transition-all duration-300">
+                                    Team
+                                </a></li>
+                            <li><a href="#faq" class="text-secondary hover:text-accent transition-all duration-300">
+                                    FAQ
+                                </a></li>
+                            <li><a href="#brand" class="text-secondary hover:text-accent transition-all duration-300">
+                                    Brand
+                                </a></li>
                         </ul>
                         <!-- form -->
                         <form class="relative flex gap-x-[10px]">
@@ -119,6 +132,27 @@
                             <a href="#service"
                                 class="pr-4 text-secondary hover:text-accent transition-all duration-300">
                                 Services
+                            </a>
+                        </li>
+                        <li class="border-r last:border-none">
+                            <a href="#testimonial"
+                                class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                Testimonials
+                            </a>
+                        </li>
+                        <li class="border-r last:border-none">
+                            <a href="#team" class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                Team
+                            </a>
+                        </li>
+                        <li class="border-r last:border-none">
+                            <a href="#faq" class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                FAQ
+                            </a>
+                        </li>
+                        <li class="border-r last:border-none">
+                            <a href="#brand" class="pr-4 text-secondary hover:text-accent transition-all duration-300">
+                                Brand
                             </a>
                         </li>
                     </ul>
@@ -204,14 +238,13 @@
                             <li><a href="#hero" class="hover:text-accent transition-all">Hero</a></li>
                             <li><a href="#stats" class="hover:text-accent transition-all">Statistic</a></li>
                             <li><a href="#service" class="hover:text-accent transition-all">Services</a></li>
+                            <li><a href="#testimonial" class="hover:text-accent transition-all">Testimonials</a></li>
                         </ul>
                         <!-- list 2 -->
                         <ul class="flex-1 flex flex-col gap-y-5">
-                            <li><a href="#" class="hover:text-accent transition-all">Our Pricing</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Contact</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Careers</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Faqs</a></li>
-                            <li><a href="#" class="hover:text-accent transition-all">Privacy Policy</a></li>
+                            <li><a href="#team" class="hover:text-accent transition-all">Team</a></li>
+                            <li><a href="#faq" class="hover:text-accent transition-all">FAQ</a></li>
+                            <li><a href="#brand" class="hover:text-accent transition-all">Brand</a></li>
                         </ul>
                     </div>
                 </div>

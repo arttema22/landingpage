@@ -33,12 +33,14 @@ final class SettingsController extends MoonShineController
         } else {
             $settings->put('email', $request->email);
         }
-
         return back();
     }
 
     public function hero_update(MoonShineRequest $request)
     {
+
+        dd($request);
+
         $settings = Valuestore::make(storage_path('data/hero_settings.json'));
 
         if (empty($request->hero_title)) {
@@ -70,6 +72,11 @@ final class SettingsController extends MoonShineController
             $settings->forget('bage_icon');
         } else {
             $settings->put('bage_icon', $request->bage_icon);
+        }
+        if (empty($request->bg_color)) {
+            $settings->forget('bg_color');
+        } else {
+            $settings->put('bg_color', $request->bg_color);
         }
         if (empty($request->image)) {
             $settings->forget('image');

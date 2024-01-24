@@ -1,25 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-<x-hero />
+
+@if (count($sets) > 0)
+
+@foreach ( $sets as $set)
+
+@switch($set->name)
+
+@case('Герой')
+@php
+$set = $sets[0]->toArray();
+@endphp
+<x-hero :set="$set" />
+@break
+
+@case(2)
 <x-stats />
-<x-service />
+@break
+
+@case(3)
+<x-services />
+@break
+
+@case(4)
+<x-testimonials />
+@break
 
 <!-- appointment -->
 {{--
 <x-appointment /> --}}
 
-<!-- testimonials -->
-{{--
-<x-testimonials /> --}}
+@case(5)
+<x-team />
+@break
 
-<!-- team -->
-{{--
-<x-team /> --}}
-
-<!-- faq -->
-{{--
-<x-faq /> --}}
+@case(6)
+<x-faq />
+@break
 
 <!-- departments -->
 {{--
@@ -29,12 +47,20 @@
 {{--
 <x-blog /> --}}
 
-<!-- brands -->
-{{--
-<x-brands /> --}}
+@case(7)
+<x-brand />
+@break
 
 <!-- newsletter -->
 {{--
 <x-newsletter /> --}}
+
+@default
+Default case...
+@endswitch
+
+@endforeach
+
+@endif
 
 @endsection

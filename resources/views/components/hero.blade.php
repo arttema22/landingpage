@@ -1,4 +1,5 @@
-<section id="hero" class="hero bg-grey py-12 xl:pt-12 xl:pb-0 overflow-hidden">
+<section id="hero" style="background-color:{{ ($settings->has('bg_color')) ? $settings->get('bg_color') : '#ffffff' }}"
+    class="hero py-12 xl:pt-12 xl:pb-0 overflow-hidden">
     <div class="container mx-auto h-full">
         <!-- text & img -->
         <div class="flex flex-col xl:flex-row items-center justify-between h-full">
@@ -35,7 +36,8 @@
             </div>
             <!-- image -->
             <div class="hero__img hidden xl:flex max-w-[814px] self-end">
-                <img src="assets/img/hero/img.png" alt="">
+                {{-- <img src="assets/img/hero/img.png" alt=""> --}}
+                <img src="{{ Storage::url($set['image']) }}" alt="{{ $set['name'] }}">
             </div>
         </div>
     </div>

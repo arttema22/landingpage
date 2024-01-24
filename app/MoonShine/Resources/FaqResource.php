@@ -4,39 +4,34 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use App\Models\Service;
+use App\Models\Faq;
 use MoonShine\Fields\ID;
 
 use MoonShine\Fields\Date;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Switcher;
+use MoonShine\Fields\Textarea;
 use MoonShine\Decorations\Flex;
 use MoonShine\Decorations\Grid;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
-use MoonShine\Fields\StackFields;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceResource extends ModelResource
+class FaqResource extends ModelResource
 {
-    protected string $model = Service::class;
+    protected string $model = Faq::class;
 
-    protected string $title = 'services';
+    protected string $title = 'Faqs';
 
     public function indexFields(): array
     {
         return [
-            Text::make('sorting')->sortable()->translatable('site'),
-            StackFields::make('title')->fields([
-                Text::make('name'),
-                Text::make(
-                    'data',
-                    'title',
-                    fn ($item) => $item->title . ' /  ' . $item->text
-                ),
-            ])->translatable('site'),
+            Number::make('sorting')->sortable()
+                ->buttons()->updateOnPreview()
+                ->translatable('site'),
+            Text::make('question')->translatable('site'),
             Switcher::make('is_publish')
                 ->updateOnPreview()
                 ->translatable('site'),
@@ -50,22 +45,23 @@ class ServiceResource extends ModelResource
             Grid::make([
                 Column::make([
                     Block::make([
-                        Text::make('name')->required(),
-                        Flex::make([
-                            Text::make('title'),
-                            Text::make('text'),
-                            Text::make('icon'),
-                        ]),
+                        Text::make('question')->required()->translatable('site'),
+                        Textarea::make('answer')->required()->translatable('site'),
                     ]),
                     Flex::make([
-                        Number::make('sorting')->buttons()->customWrapperAttributes(['class' => 'basis-1/2']),
-                        Switcher::make('is_publish')->customWrapperAttributes(['class' => 'basis-1/2']),
+                        Number::make('sorting')
+                            ->buttons()
+                            ->customWrapperAttributes(['class' => 'basis-1/2'])
+                            ->translatable('site'),
+                        Switcher::make('is_publish')
+                            ->customWrapperAttributes(['class' => 'basis-1/2'])
+                            ->translatable('site'),
                     ]),
                 ])->columnSpan(8),
                 Column::make([
-                    Date::make('created_at')->disabled(),
-                    Date::make('updated_at')->disabled(),
-                    Date::make('deleted_at')->disabled(),
+                    Date::make('created_at')->disabled()->translatable('site'),
+                    Date::make('updated_at')->disabled()->translatable('site'),
+                    Date::make('deleted_at')->disabled()->translatable('site'),
                 ])->columnSpan(4),
             ]),
         ];

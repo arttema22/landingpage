@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Faq as ModelsFaq;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,10 @@ class Faq extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.faq');
+        $faqs = ModelsFaq::where('is_publish', 1)
+            ->orderBy('sorting')
+            ->get();
+
+        return view('components.faq', ['faqs' => $faqs]);
     }
 }

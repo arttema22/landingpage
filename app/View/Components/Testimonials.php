@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Testimonial;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class Testimonials extends Component
 {
@@ -21,6 +22,10 @@ class Testimonials extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.testimonials');
+        $testimonials = Testimonial::where('is_publish', 1)
+            ->orderBy('sorting')
+            ->get();
+
+        return view('components.testimonials', ['testimonials' => $testimonials]);
     }
 }

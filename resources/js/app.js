@@ -21,10 +21,19 @@ closeBtn.addEventListener('click', () => {
 });
 
 // swiper
-const swiper = new Swiper('.swiper', {
+// const swiper = new Swiper('.swiper', {
+//     loop: true,
+//     pagination: {
+//         el: '.swiper-pagination',
+//         clickable: true,
+//     },
+// });
+var swiper = new Swiper(".swiper", {
     loop: true,
+    slidesPerView: 2,
+    spaceBetween: 30,
     pagination: {
-        el: '.swiper-pagination',
+        el: ".swiper-pagination",
         clickable: true,
     },
 });

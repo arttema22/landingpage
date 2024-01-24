@@ -7,9 +7,11 @@ namespace App\MoonShine\Pages;
 use MoonShine\Fields\Url;
 use MoonShine\Pages\Page;
 use MoonShine\Fields\Text;
+use MoonShine\Fields\Color;
 use MoonShine\Fields\Email;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Phone;
+use MoonShine\Fields\Preview;
 use MoonShine\Fields\Textarea;
 use MoonShine\Decorations\Grid;
 use MoonShine\Decorations\Block;
@@ -35,21 +37,35 @@ class Hero extends Page
     public function fields(): array
     {
         return [
-            Text::make('hero_title'),
-            Textarea::make('hero_text'),
             Grid::make([
                 Column::make([
+                    Block::make('main', [
+                        Text::make('hero_title'),
+                        Textarea::make('hero_text'),
+                        Color::make('bg_color')->translatable('site'),
+                    ])->translatable('site'),
                     Block::make('button', [
                         Text::make('hero_btn_title'),
                         Text::make('hero_btn_url'),
-                    ]),
-                ])->columnSpan(6),
-                Column::make([
+                    ])->translatable('site'),
                     Block::make('bage', [
                         Text::make('bage_title'),
                         Text::make('bage_icon'),
-                    ]),
-                ])->columnSpan(6),
+                    ])->translatable('site'),
+                ])->columnSpan(8),
+                Column::make([
+                    Preview::make(
+                        'help',
+                        'help',
+                        static fn () => '<b>Заголовком</b> сделайте оффер — вдохновляющую фразу, которая передает суть
+                        проекта.
+                         Как правило, заголовок более эмоциональный, подзаголовок раскрывает смысл.
+<br>
+                        <b>Форма или кнопка</b>  — для тех, кто сразу заинтересовался или зашел повторно,
+                         можно сразу на обложке добавить целевое действие.'
+                    )->translatable('site'),
+
+                ])->columnSpan(4),
             ]),
         ];
     }
@@ -68,7 +84,8 @@ class Hero extends Page
                     'hero_btn_url' => $settings->get('hero_btn_url'),
                     'bage_title' => $settings->get('bage_title'),
                     'bage_icon' => $settings->get('bage_icon'),
-                ])
+                    'bg_color' => $settings->get('bg_color'),
+                ]),
         ];
     }
 }

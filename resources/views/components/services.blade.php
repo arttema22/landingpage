@@ -10,15 +10,14 @@
                 xl:flex-row xl:mb-[60px]">
                 <h2 class="h2 text-white flex-1 mb-4 xl:mb-0 text-center
                    xl:text-left">
-                    Our best services for your solution
+                    Наши лучшие сервисы для Вас
                 </h2>
                 <p class="text-white flex-1 text-center xl:text-left
                    max-w-2xl xl:max-w-none">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, distinctio expedita
-                    repellendus
-                    nisi unde quaerat aut non laborum! Dignissimos beatae, eos similique fuga iure consectetur
-                    obcaecati
-                    hic perferendis porro nisi!
+                    Учитывая ключевые сценарии поведения, глубокий уровень погружения способствует повышению качества
+                    экспериментов,
+                    поражающих по своей масштабности и грандиозности. А также представители современных социальных
+                    резервов.
                 </p>
             </div>
         </div>

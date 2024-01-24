@@ -3,11 +3,11 @@
 namespace App\View\Components;
 
 use Closure;
-use App\Models\Services;
+use App\Models\Service;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class Service extends Component
+class Services extends Component
 {
     /**
      * Create a new component instance.
@@ -22,10 +22,10 @@ class Service extends Component
      */
     public function render(): View|Closure|string
     {
-        $services = Services::where('is_publish', 1)
+        $services = Service::where('is_publish', 1)
             ->orderBy('sorting')
             ->get();
 
-        return view('components.service', ['services' => $services]);
+        return view('components.services', ['services' => $services]);
     }
 }

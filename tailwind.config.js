@@ -28,7 +28,8 @@ module.exports = {
                 grey: '#e8f0f1',
             },
             fontFamily: {
-                primary: 'Poppins'
+                primary: 'Roboto Flex'
+                // primary: 'Poppins'
             },
             boxShadow: {
                 custom1: '0px 2px 40px 0px rgba(8, 70,78,0.08)',

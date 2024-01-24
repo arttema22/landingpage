@@ -9,12 +9,14 @@ use Illuminate\Contracts\View\View;
 
 class Hero extends Component
 {
+    public $set;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($set)
     {
-        //
+        $this->set = $set;
     }
 
     /**
