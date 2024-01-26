@@ -8,12 +8,15 @@
 
 @switch($set->name)
 
+
 @case('Герой')
 @php
 $set = $sets[0]->toArray();
+//dd($set);
 @endphp
 <x-hero :set="$set" />
 @break
+
 
 @case(2)
 <x-stats />

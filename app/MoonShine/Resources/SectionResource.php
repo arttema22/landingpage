@@ -12,6 +12,12 @@ use MoonShine\Fields\Text;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Switcher;
+use MoonShine\Fields\Textarea;
+use MoonShine\Decorations\Flex;
+use MoonShine\Decorations\Grid;
+use MoonShine\Decorations\Block;
+use MoonShine\Decorations\Column;
+use MoonShine\Decorations\Divider;
 use MoonShine\Resources\ModelResource;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,26 +48,29 @@ class SectionResource extends ModelResource
     public function formFields(): array
     {
         return [
-            Text::make('name')->required()
-                ->translatable('site'),
-            Image::make('image')
-                ->dir('section')
-                ->allowedExtensions(['svg', 'jpg', 'jepeg', 'png', 'gif'])
-                ->removable()
-                ->enableDeleteDir()
-                ->disableDownload()
-                ->translatable('site'),
-            Json::make('data')
-                ->keyValue()
-                ->creatable()
-                ->removable(),
-            Number::make('sorting')
-                ->buttons()
-                ->customWrapperAttributes(['class' => 'basis-1/2'])
-                ->translatable('site'),
-            Switcher::make('is_publish')
-                ->customWrapperAttributes(['class' => 'basis-1/2'])
-                ->translatable('site'),
+            Grid::make([
+                Column::make([
+                    Text::make('name')->required()
+                        ->translatable('site'),
+                    Divider::make(),
+                ])->columnSpan(8),
+                Column::make([
+                    Block::make([
+                        Image::make('image')
+                            ->dir('section')
+                            ->allowedExtensions(['svg', 'jpg', 'jepeg', 'png', 'gif'])
+                            ->removable()
+                            ->enableDeleteDir()
+                            ->disableDownload()
+                            ->translatable('site'),
+                    ]),
+                    Number::make('sorting')
+                        ->buttons()
+                        ->translatable('site'),
+                    Switcher::make('is_publish')
+                        ->translatable('site'),
+                ])->columnSpan(4),
+            ]),
         ];
     }
 

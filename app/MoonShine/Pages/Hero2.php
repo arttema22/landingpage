@@ -4,15 +4,23 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages;
 
+use App\Models\Section;
 use MoonShine\Fields\ID;
 use MoonShine\Pages\Page;
+use MoonShine\Fields\Json;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Image;
+use MoonShine\Fields\Number;
 use MoonShine\MoonShineAuth;
 use MoonShine\Decorations\Tab;
 use MoonShine\Fields\Password;
+use MoonShine\Fields\Switcher;
+use MoonShine\Fields\Textarea;
+use MoonShine\Decorations\Grid;
 use MoonShine\Decorations\Tabs;
 use MoonShine\Decorations\Block;
+use MoonShine\Decorations\Column;
+use MoonShine\Decorations\Divider;
 use MoonShine\Decorations\Heading;
 use MoonShine\TypeCasts\ModelCast;
 use MoonShine\Fields\PasswordRepeat;
@@ -31,51 +39,66 @@ class Hero2 extends Page
 
     public function title(): string
     {
-        return __('moonshine::ui.profile');
+        return __('hero2');
     }
 
     public function fields(): array
     {
         return [
-            Block::make([
-                Tabs::make([
-                    Tab::make(__('moonshine::ui.resource.main_information'), [
-                        ID::make()
-                            ->sortable()
-                            ->showOnExport(),
-
-                        Text::make(trans('moonshine::ui.resource.name'), 'name')
-                            ->setValue(auth()->user()
-                                ->{config('moonshine.auth.fields.name', 'name')})
-                            ->required(),
-
-                        Text::make(trans('moonshine::ui.login.username'), 'username')
-                            ->setValue(auth()->user()
-                                ->{config('moonshine.auth.fields.username', 'email')})
-                            ->required(),
-
-                        Image::make(trans('moonshine::ui.resource.avatar'), 'avatar')
-                            ->setValue(auth()->user()
-                                ->{config('moonshine.auth.fields.avatar', 'avatar')} ?? null)
-                            ->disk(config('moonshine.disk', 'public'))
-                            ->options(config('moonshine.disk_options', []))
-                            ->dir('moonshine_users')
+            Text::make('name')->required()
+                ->translatable('site'),
+            Divider::make(),
+            Grid::make([
+                Column::make([
+                    Block::make('content', [
+                        Json::make('content', 'data.content')
+                            ->fields([
+                                Text::make('title')->translatable('site'),
+                            ])
+                            ->creatable(false)
+                            ->translatable('site'),
+                        Json::make('content', 'data.content')
+                            ->fields([
+                                Textarea::make('text')->translatable('site'),
+                            ])
+                            ->creatable(false)
+                            ->translatable('site'),
+                    ])->translatable('site'),
+                    Block::make([
+                        Json::make('button', 'data.button')
+                            ->fields([
+                                Text::make('title')->translatable('site'),
+                                Text::make('url')->translatable('site'),
+                            ])
+                            ->creatable(false)
+                            ->translatable('site'),
+                    ]),
+                    Block::make([
+                        Json::make('bage', 'data.bage')
+                            ->fields([
+                                Text::make('title')->translatable('site'),
+                                Text::make('icon')->translatable('site'),
+                            ])
+                            ->creatable(false)
+                            ->translatable('site'),
+                    ]),
+                ])->columnSpan(8),
+                Column::make([
+                    Block::make([
+                        Image::make('image')
+                            ->dir('section')
+                            ->allowedExtensions(['svg', 'jpg', 'jepeg', 'png', 'gif'])
                             ->removable()
-                            ->allowedExtensions(['jpg', 'png', 'jpeg', 'gif']),
+                            ->enableDeleteDir()
+                            ->disableDownload()
+                            ->translatable('site'),
                     ]),
-
-                    Tab::make(trans('moonshine::ui.resource.password'), [
-                        Heading::make(__('moonshine::ui.resource.change_password')),
-
-                        Password::make(trans('moonshine::ui.resource.password'), 'password')
-                            ->customAttributes(['autocomplete' => 'new-password'])
-                            ->eye(),
-
-                        PasswordRepeat::make(trans('moonshine::ui.resource.repeat_password'), 'password_repeat')
-                            ->customAttributes(['autocomplete' => 'confirm-password'])
-                            ->eye(),
-                    ]),
-                ]),
+                    Number::make('sorting')
+                        ->buttons()
+                        ->translatable('site'),
+                    Switcher::make('is_publish')
+                        ->translatable('site'),
+                ])->columnSpan(4),
             ]),
         ];
     }
@@ -89,17 +112,13 @@ class Hero2 extends Page
                     'enctype' => 'multipart/form-data',
                 ])
                 ->fields($this->fields())
-                ->cast(ModelCast::make(MoonShineAuth::model()::class))
+                ->fillCast(
+                    Section::query()->first(),
+                    ModelCast::make(Section::class)
+                )
                 ->submit(__('moonshine::ui.save'), [
                     'class' => 'btn-lg btn-primary',
                 ]),
-
-            FlexibleRender::make(
-                view('moonshine::ui.social-auth', [
-                    'title' => trans('moonshine::ui.resource.link_socialite'),
-                    'attached' => true,
-                ])
-            ),
         ];
     }
 }

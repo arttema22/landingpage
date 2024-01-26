@@ -11,6 +11,7 @@ use App\MoonShine\Pages\Hero2;
 use App\MoonShine\Pages\TestPage;
 use App\MoonShine\Resources\BrandResource;
 use App\MoonShine\Resources\FaqResource;
+use App\MoonShine\Resources\HeroResource;
 use App\MoonShine\Resources\SectionResource;
 use App\MoonShine\Resources\ServiceResource;
 use App\MoonShine\Resources\StatisticResource;
@@ -43,6 +44,12 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 ->translatable('site'),
 
             MenuGroup::make('first_screen', [
+
+                // MenuItem::make('hero-new', new HeroResource)
+                //     ->icon('heroicons.outline.bars-3')
+                //     ->translatable('site'),
+
+
                 MenuItem::make('hero2', Hero2::make('hero_section2', 'hero2'))
                     ->icon('heroicons.outline.bars-3')
                     ->translatable('site'),
