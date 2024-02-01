@@ -6,14 +6,12 @@
 
 @foreach ( $sets as $set)
 
-@switch($set->name)
+@switch($set->system_id)
 
-
-@case('Герой')
-@php
-$set = $sets[0]->toArray();
-//dd($set);
-@endphp
+@case(111)
+{{-- @php --}}
+{{-- $set = $sets[0]->toArray(); --}}
+{{-- @endphp --}}
 <x-hero :set="$set" />
 @break
 

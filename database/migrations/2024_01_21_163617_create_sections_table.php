@@ -14,16 +14,11 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(MoonshineUser::class)
-                ->nullable()
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->nullOnDelete();
-
+            $table->integer('system_id')->comment('Идентификатор');
             $table->string('name')->comment('Название');
+            $table->integer('template')->default(1)->comment('Шаблон');
             $table->string('image')->nullable()->comment('Изображение');
             $table->json('data')->nullable()->comment('Данные');
-
             $table->boolean('is_publish')->default('0')->comment('Статус');
             $table->integer('sorting')->nullable()->comment('Сортировка');
 

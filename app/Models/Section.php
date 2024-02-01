@@ -16,4 +16,8 @@ class Section extends Model
     protected $casts = [
         'data' => 'json',
     ];
+
+    protected $fillable = [
+        'system_id', 'name', 'template', 'image', 'data', 'is_publish', 'sorting'
+    ];
 }

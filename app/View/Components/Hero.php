@@ -24,8 +24,13 @@ class Hero extends Component
      */
     public function render(): View|Closure|string
     {
-        $settings = Valuestore::make(storage_path('data/hero_settings.json'));
-
-        return view('components.hero', ['settings' => $settings]);
+        switch ($this->set['template']) {
+            case 1:
+                return view('components.hero.01.hero_l');
+            case 2:
+                return view('components.hero.01.hero_r');
+            default:
+                return view('components.hero.01.hero_l');
+        }
     }
 }

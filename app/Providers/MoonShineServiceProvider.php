@@ -5,24 +5,24 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Models\Section;
-use App\MoonShine\Pages\Contact;
+use MoonShine\MoonShine;
+use MoonShine\Menu\MenuItem;
 use App\MoonShine\Pages\Hero;
-use App\MoonShine\Pages\Hero2;
+use MoonShine\Menu\MenuGroup;
+use App\MoonShine\Pages\Contact;
+use App\MoonShine\Pages\HeroPage;
 use App\MoonShine\Pages\TestPage;
-use App\MoonShine\Resources\BrandResource;
 use App\MoonShine\Resources\FaqResource;
 use App\MoonShine\Resources\HeroResource;
+use App\MoonShine\Resources\TeamResource;
+use App\MoonShine\Resources\BrandResource;
 use App\MoonShine\Resources\SectionResource;
 use App\MoonShine\Resources\ServiceResource;
 use App\MoonShine\Resources\StatisticResource;
-use App\MoonShine\Resources\TeamResource;
-use App\MoonShine\Resources\TestimonialResource;
-use MoonShine\Providers\MoonShineApplicationServiceProvider;
-use MoonShine\MoonShine;
-use MoonShine\Menu\MenuGroup;
-use MoonShine\Menu\MenuItem;
 use MoonShine\Resources\MoonShineUserResource;
+use App\MoonShine\Resources\TestimonialResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
+use MoonShine\Providers\MoonShineApplicationServiceProvider;
 
 class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 {
@@ -45,17 +45,16 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 
             MenuGroup::make('first_screen', [
 
-                // MenuItem::make('hero-new', new HeroResource)
-                //     ->icon('heroicons.outline.bars-3')
-                //     ->translatable('site'),
-
-
-                MenuItem::make('hero2', Hero2::make('hero_section2', 'hero2'))
-                    ->icon('heroicons.outline.bars-3')
-                    ->translatable('site'),
                 MenuItem::make('hero', Hero::make('hero_section', 'hero'))
                     ->icon('heroicons.outline.bars-3')
                     ->translatable('site'),
+
+                MenuItem::make('hero2', HeroPage::make('herop_section', 'herop'))
+                    ->icon('heroicons.outline.bars-3')
+                    ->translatable('site'),
+
+
+
                 MenuItem::make('contact', Contact::make('contact_section', 'contact'))
                     ->icon('heroicons.outline.bars-3')
                     ->translatable('site'),

@@ -4,54 +4,126 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages;
 
-use MoonShine\Fields\Url;
+use App\Models\Section;
+use App\MoonShine\Controllers\HeroController;
+use MoonShine\Fields\ID;
 use MoonShine\Pages\Page;
+use MoonShine\Fields\Json;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Color;
-use MoonShine\Fields\Email;
 use MoonShine\Fields\Image;
-use MoonShine\Fields\Phone;
+use MoonShine\Fields\Number;
+use MoonShine\Fields\Select;
+use MoonShine\MoonShineAuth;
 use MoonShine\Fields\Preview;
+use MoonShine\Decorations\Tab;
+use MoonShine\Fields\Password;
+use MoonShine\Fields\Switcher;
 use MoonShine\Fields\Textarea;
 use MoonShine\Decorations\Grid;
+use MoonShine\Decorations\Tabs;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Column;
-use Spatie\Valuestore\Valuestore;
+use MoonShine\Decorations\Divider;
+use MoonShine\Decorations\Heading;
+use MoonShine\TypeCasts\ModelCast;
+use MoonShine\Fields\PasswordRepeat;
 use MoonShine\Components\FormBuilder;
-use App\MoonShine\Controllers\SettingsController;
+use MoonShine\Components\FlexibleRender;
+use MoonShine\Fields\Hidden;
+use MoonShine\Http\Controllers\ProfileController;
 
 class Hero extends Page
 {
     public function breadcrumbs(): array
     {
         return [
-            '#' => $this->title()
+            '#' => $this->title(),
         ];
     }
 
     public function title(): string
     {
-        return $this->title ?: 'Hero';
+        return __('hero');
     }
 
     public function fields(): array
     {
         return [
+            Hidden::make('id'),
+            Text::make('name')->required()
+                ->translatable('site'),
+            Divider::make(),
             Grid::make([
                 Column::make([
-                    Block::make('main', [
-                        Text::make('hero_title'),
-                        Textarea::make('hero_text'),
-                        Color::make('bg_color')->translatable('site'),
-                    ])->translatable('site'),
-                    Block::make('button', [
-                        Text::make('hero_btn_title'),
-                        Text::make('hero_btn_url'),
-                    ])->translatable('site'),
-                    Block::make('bage', [
-                        Text::make('bage_title'),
-                        Text::make('bage_icon'),
-                    ])->translatable('site'),
+                    Tabs::make([
+                        Tab::make('content', [
+                            Block::make('content', [
+                                Json::make('content', 'data.content')
+                                    ->fields([
+                                        Text::make('title')->translatable('site'),
+                                        Textarea::make('text')->translatable('site'),
+                                    ])
+                                    ->vertical()
+                                    ->creatable(false)
+                                    ->translatable('site'),
+                            ])->translatable('site'),
+                            Block::make([
+                                Json::make('button', 'data.button')
+                                    ->fields([
+                                        Text::make('title')->translatable('site'),
+                                        Text::make('url')->translatable('site'),
+                                    ])
+                                    ->creatable(false)
+                                    ->translatable('site'),
+                            ]),
+                            Block::make([
+                                Json::make('bage', 'data.bage')
+                                    ->fields([
+                                        Text::make('title')->translatable('site'),
+                                        Text::make('icon')->translatable('site'),
+                                    ])
+                                    ->creatable(false)
+                                    ->translatable('site'),
+                            ]),
+                            Block::make([
+                                Image::make('image')
+                                    ->dir('section')
+                                    ->allowedExtensions(['svg', 'jpg', 'jepeg', 'png', 'gif'])
+                                    ->removable()
+                                    ->enableDeleteDir()
+                                    ->disableDownload()
+                                    ->translatable('site'),
+                            ]),
+                            Number::make('sorting')
+                                ->buttons()
+                                ->translatable('site'),
+                            Switcher::make('is_publish')
+                                ->translatable('site'),
+                        ])->translatable('site'),
+                        Tab::make('styles', [
+                            Select::make('template', 'template')
+                                ->options([
+                                    1 => 'Информация слева',
+                                    2 => 'Информация справа',
+                                ])
+                                ->default(1)
+                                ->translatable('site'),
+                            Json::make('style', 'data.style')
+                                ->fields([
+                                    Color::make('bg')->translatable('site'),
+                                    Color::make('content_title_color')->translatable('site'),
+                                    Color::make('content_text_color')->translatable('site'),
+                                    Color::make('button_text_color')->translatable('site'),
+                                    Color::make('button_bg_color')->translatable('site'),
+                                    Color::make('bage_text_color')->translatable('site'),
+                                    Color::make('bage_bg_color')->translatable('site'),
+                                ])
+                                ->vertical()
+                                ->creatable(false)
+                                ->translatable('site'),
+                        ])->translatable('site'),
+                    ]),
                 ])->columnSpan(8),
                 Column::make([
                     Preview::make(
@@ -64,7 +136,6 @@ class Hero extends Page
                         <b>Форма или кнопка</b>  — для тех, кто сразу заинтересовался или зашел повторно,
                          можно сразу на обложке добавить целевое действие.'
                     )->translatable('site'),
-
                 ])->columnSpan(4),
             ]),
         ];
@@ -72,20 +143,21 @@ class Hero extends Page
 
     public function components(): array
     {
-        $settings = Valuestore::make(storage_path('data/hero_settings.json'));
-
         return [
-            FormBuilder::make(action([SettingsController::class, 'hero_update']))
+            FormBuilder::make(route('hero_update'))
+                // ->async()
+                // ->customAttributes([
+                //     'enctype' => 'multipart/form-data',
+                // ])
                 ->fields($this->fields())
-                ->fill([
-                    'hero_title' => $settings->get('hero_title'),
-                    'hero_text' => $settings->get('hero_text'),
-                    'hero_btn_title' => $settings->get('hero_btn_title'),
-                    'hero_btn_url' => $settings->get('hero_btn_url'),
-                    'bage_title' => $settings->get('bage_title'),
-                    'bage_icon' => $settings->get('bage_icon'),
-                    'bg_color' => $settings->get('bg_color'),
-                ]),
+                ->fillCast(
+                    Section::query()->first(),
+                    ModelCast::make(Section::class)
+                )
+                ->submit(__('moonshine::ui.save'), [
+                    'class' => 'btn-lg btn-primary',
+                ])
+                ->name('hero-form'),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\MoonShine\Controllers\HeroController;
 use App\MoonShine\Controllers\SettingsController;
 
 /*
@@ -16,6 +17,10 @@ use App\MoonShine\Controllers\SettingsController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::post('/hero', [HeroController::class, 'store'])
+    // ->middleware(config('moonshine.auth.middleware', []))
+    ->name('hero.store');
 
 // Route::get('/', function () {
 //     return view('landing');
